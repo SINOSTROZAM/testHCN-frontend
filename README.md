@@ -5,41 +5,28 @@ Este es el proyecto del Front-end construido con React.
 
 ## Instalación
 
-1. **Clona el repositorio:**
+# Proyecto Front-end con React.js
+
+## Configuración Inicial
+
+1. Asegúrate de tener Node.js instalado.
+2. Clona el repositorio:
 
    ```bash
-   git clone https://github.com/tuusuario/frontend-repo.git
-   ```
+   git clone https://github.com/SINOSTROZAM/testhcn-frontend.git
+   
+3. Navega a la carpeta del proyecto:
+bash
+cd nombre-proyecto-front-end
 
-2. **Navega al directorio del proyecto:**
+4. Instala las dependencias:
+bash
+npm install
 
-   ```bash
-   cd frontend-repo
-   ```
+5. Ejecución
+Inicia el servidor de desarrollo:
 
-3. **Instala las dependencias:**
+bash
+npm start
 
-   ```bash
-   npm install
-   ```
-
-4. **Inicia el servidor de desarrollo:**
-
-   ```bash
-   npm start
-   ```
-
-5. **Abre tu navegador y visita:**
-
-   ```
-   http://localhost:3000
-   ```
-
-## Configuración
-
-Asegúrate de tener configurado el Back-end para conectar con el Front-end. La configuración del endpoint del Back-end se realiza en el archivo `.env`.
-
-## Construcción
-
-Para crear una versión de producción del Front-end, ejecuta:
-npm run build
+6. Abre tu navegador y visita http://localhost:8000 para ver la aplicación.
