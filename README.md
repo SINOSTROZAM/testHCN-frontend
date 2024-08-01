@@ -16,17 +16,17 @@ Este es el proyecto del Front-end construido con React.
    git clone https://github.com/SINOSTROZAM/testhcn-frontend.git
    
 3. Navega a la carpeta del proyecto:
-bash
-cd nombre-proyecto-front-end
+   ```bashbash
+   cd nombre-proyecto-front-end
 
 4. Instala las dependencias:
-bash
-npm install
+   ```bashbash
+   npm install
 
 5. Ejecución
-Inicia el servidor de desarrollo:
+   Inicia el servidor de desarrollo:
 
-bash
-npm start
+   ```bashbash
+   npm start
 
 6. Abre tu navegador y visita http://localhost:8000 para ver la aplicación.
