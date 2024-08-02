@@ -10,26 +10,30 @@ Este es el proyecto del Front-end construido con React.
 ## Configuración Inicial
 
 1. Asegúrate de tener Node.js instalado.
-2. Clona el repositorio:
+2. ## Requisitos
+
+   - Node.js 14 o superior
+   - npm o yarn
+3. Clona el repositorio:
 
    ```bash
    git clone https://github.com/SINOSTROZAM/testhcn-frontend.git
    
-3. Navega a la carpeta del proyecto:
+4. Navega a la carpeta del proyecto:
    ```bashbash
    cd testhcn-frontend
 
-4. Instala las dependencias:
+5. Instala las dependencias:
    ```bashbash
    npm install & npm update
 
-5. Ejecución
+6. Ejecución
    Inicia el servidor de desarrollo:
 
    ```bashbash
    npm start
 
-6. Abre tu navegador y visita http://localhost:3000 para ver la aplicación y la Grilla que muestre las calles existentes con filtro de búsqueda avanzada.
+7. Abre tu navegador y visita http://localhost:3000 para ver la aplicación y la Grilla que muestre las calles existentes con filtro de búsqueda avanzada.
    
 
 Notas Adicionales
