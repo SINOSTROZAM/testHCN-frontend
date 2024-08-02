@@ -31,5 +31,8 @@ Este es el proyecto del Front-end construido con React.
 
 6. Abre tu navegador y visita http://localhost:3000 para ver la aplicación y la Grilla que muestre las calles existentes con filtro de búsqueda avanzada.
    
-7. Ademas con http://localhost:3000/ingresar , se vera la funcion de agregar la calle , El ingreso de la región,
-provincia y ciudad a la cual pertenece la calle debe contemplar 3 combobox dependientes.
+
+Notas Adicionales
+Postman: Asegúrate de que la API esté en ejecución antes de realizar las pruebas con Postman.
+Configuración del Front-end: El archivo .env en el front-end debe coincidir con la URL de tu API para que las peticiones funcionen correctamente.
+CORS: Si encuentras problemas de CORS al hacer peticiones desde el front-end al back-end, asegúrate de configurar los encabezados CORS en tu aplicación Laravel.
