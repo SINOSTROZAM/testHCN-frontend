@@ -1,6 +1,54 @@
 import React, { useState, useEffect } from "react";
 import axios from "../api/axios";
 
+const styles = {
+  container: {
+    padding: "20px",
+    maxWidth: "600px",
+    margin: "0 auto",
+    fontFamily: "Arial, sans-serif",
+  },
+  formGroup: {
+    marginBottom: "15px",
+  },
+  label: {
+    display: "block",
+    marginBottom: "5px",
+    fontWeight: "bold",
+  },
+  input: {
+    width: "100%",
+    padding: "10px",
+    boxSizing: "border-box",
+    border: "1px solid #ccc",
+    borderRadius: "4px",
+  },
+  select: {
+    width: "100%",
+    padding: "10px",
+    boxSizing: "border-box",
+    border: "1px solid #ccc",
+    borderRadius: "4px",
+  },
+  button: {
+    padding: "10px 15px",
+    margin: "5px",
+    border: "none",
+    borderRadius: "4px",
+    cursor: "pointer",
+    backgroundColor: "#007BFF",
+    color: "#fff",
+    fontSize: "16px",
+  },
+  buttonSecondary: {
+    backgroundColor: "#6c757d",
+  },
+  error: {
+    color: "red",
+    marginBottom: "15px",
+  },
+};
+
 const StreetForm = () => {
   // Estados para manejar los datos
   const [regions, setRegions] = useState([]);
@@ -82,7 +130,7 @@ const StreetForm = () => {
         city_id: selectedCity,
       };
       if (isEditing) {
-        await axios.put(`/streets/${currentStreetId}`, data);
+        await axios.put(`/api/streets/${currentStreetId}`, data);
         alert("Calle actualizada con éxito");
       } else {
         await axios.post("/streets", data);
@@ -96,15 +144,6 @@ const StreetForm = () => {
     }
   };
 
-  // Manejo de la edición de calles
-  const handleEdit = (street) => {
-    setIsEditing(true);
-    setCurrentStreetId(street.id);
-    setNameStreet(street.nombre);
-    setSelectedRegion(street.region_id);
-    setSelectedProvince(street.province_id);
-  };
-
   // Manejo del restablecimiento del formulario
   const resetForm = () => {
     setIsEditing(false);
@@ -116,69 +155,83 @@ const StreetForm = () => {
   };
 
   return (
-    <div>
+    <div style={styles.container}>
       <h2>{isEditing ? "Editar Calle" : "Agregar Calle"}</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p style={styles.error}>{error}</p>}
       <form onSubmit={handleSubmit}>
-        <label>
-          Nombre de Calle:
-          <input
-            type="text"
-            value={nameStreet}
-            onChange={(e) => setNameStreet(e.target.value)}
-            required
-          />
-        </label>
-
-        <label>
-          Región:
-          <select
-            value={selectedRegion}
-            onChange={(e) => setSelectedRegion(e.target.value)}
-          >
-            <option value="">Selecciona una región</option>
-            {regions.map((region) => (
-              <option key={region.id} value={region.id}>
-                {region.name}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <label>
-          Provincia:
-          <select
-            value={selectedProvince}
-            onChange={(e) => setSelectedProvince(e.target.value)}
-            disabled={!selectedRegion}
-          >
-            <option value="">Selecciona una provincia</option>
-            {provinces.map((province) => (
-              <option key={province.id} value={province.id}>
-                {province.name}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <label>
-          Ciudad:
-          <select
-            value={selectedCity}
-            onChange={(e) => setSelectedCity(e.target.value)}
-            disabled={!selectedProvince}
-          >
-            <option value="">Selecciona una ciudad</option>
-            {cities.map((city) => (
-              <option key={city.id} value={city.id}>
-                {city.name}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <button type="submit">{isEditing ? "Actualizar" : "Guardar"}</button>
-        <button type="button" onClick={resetForm}>
+        <div style={styles.formGroup}>
+          <label style={styles.label}>
+            Nombre de Calle:
+            <input
+              type="text"
+              value={nameStreet}
+              onChange={(e) => setNameStreet(e.target.value)}
+              required
+              style={styles.input}
+            />
+          </label>
+        </div>
+        <div style={styles.formGroup}>
+          <label style={styles.label}>
+            Región:
+            <select
+              value={selectedRegion}
+              onChange={(e) => setSelectedRegion(e.target.value)}
+              style={styles.select}
+            >
+              <option value="">Selecciona una región</option>
+              {regions.map((region) => (
+                <option key={region.id} value={region.id}>
+                  {region.name}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+        <div style={styles.formGroup}>
+          <label style={styles.label}>
+            Provincia:
+            <select
+              value={selectedProvince}
+              onChange={(e) => setSelectedProvince(e.target.value)}
+              disabled={!selectedRegion}
+              style={styles.select}
+            >
+              <option value="">Selecciona una provincia</option>
+              {provinces.map((province) => (
+                <option key={province.id} value={province.id}>
+                  {province.name}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+        <div style={styles.formGroup}>
+          <label style={styles.label}>
+            Ciudad:
+            <select
+              value={selectedCity}
+              onChange={(e) => setSelectedCity(e.target.value)}
+              disabled={!selectedProvince}
+              style={styles.select}
+            >
+              <option value="">Selecciona una ciudad</option>
+              {cities.map((city) => (
+                <option key={city.id} value={city.id}>
+                  {city.name}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+        <button type="submit" style={styles.button}>
+          {isEditing ? "Actualizar" : "Guardar"}
+        </button>
+        <button
+          type="button"
+          onClick={resetForm}
+          style={{ ...styles.button, ...styles.buttonSecondary }}
+        >
           Cancelar
         </button>
       </form>

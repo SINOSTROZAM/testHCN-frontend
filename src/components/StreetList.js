@@ -19,7 +19,7 @@ const StreetList = () => {
     // Función para recuperar las calles desde la API
     const fetchStreets = async () => {
       try {
-        const response = await fetch("/api/streets"); // Verifica que esta URL sea correcta
+        const response = await fetch(`http://localhost:8000/api/streets/`);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -43,25 +43,33 @@ const StreetList = () => {
 
     if (filterName) {
       filtered = filtered.filter((street) =>
-        street.name.toLowerCase().includes(filterName.toLowerCase())
+        (street.name ? street.name.toLowerCase() : "").includes(
+          filterName.toLowerCase()
+        )
       );
     }
 
     if (filterRegion) {
       filtered = filtered.filter((street) =>
-        street.region.toLowerCase().includes(filterRegion.toLowerCase())
+        (street.region ? street.region.toLowerCase() : "").includes(
+          filterRegion.toLowerCase()
+        )
       );
     }
 
     if (filterProvince) {
       filtered = filtered.filter((street) =>
-        street.province.toLowerCase().includes(filterProvince.toLowerCase())
+        (street.province ? street.province.toLowerCase() : "").includes(
+          filterProvince.toLowerCase()
+        )
       );
     }
 
     if (filterCity) {
       filtered = filtered.filter((street) =>
-        street.city.toLowerCase().includes(filterCity.toLowerCase())
+        (street.city ? street.city.toLowerCase() : "").includes(
+          filterCity.toLowerCase()
+        )
       );
     }
 
@@ -80,11 +88,11 @@ const StreetList = () => {
 
   return (
     <div>
-      <h1>Streets List</h1>
+      <h1>Grilla de Calles</h1>
       <form onSubmit={(e) => e.preventDefault()}>
         <input
           type="text"
-          placeholder="Filter by name"
+          placeholder="Filtro para nombre"
           value={filterName}
           onChange={(e) => {
             setFilterName(e.target.value);
@@ -93,7 +101,7 @@ const StreetList = () => {
         />
         <input
           type="text"
-          placeholder="Filter by region"
+          placeholder="Filtro para region"
           value={filterRegion}
           onChange={(e) => {
             setFilterRegion(e.target.value);
@@ -102,7 +110,7 @@ const StreetList = () => {
         />
         <input
           type="text"
-          placeholder="Filter by province"
+          placeholder="Filtro para provincia"
           value={filterProvince}
           onChange={(e) => {
             setFilterProvince(e.target.value);
@@ -111,7 +119,7 @@ const StreetList = () => {
         />
         <input
           type="text"
-          placeholder="Filter by city"
+          placeholder="Filtro para ciudad"
           value={filterCity}
           onChange={(e) => {
             setFilterCity(e.target.value);
@@ -122,10 +130,10 @@ const StreetList = () => {
       <table>
         <thead>
           <tr>
-            <th>Name</th>
+            <th>Nombre</th>
             <th>Region</th>
-            <th>Province</th>
-            <th>City</th>
+            <th>Provincia</th>
+            <th>Ciudad</th>
           </tr>
         </thead>
         <tbody>
@@ -140,7 +148,7 @@ const StreetList = () => {
             ))
           ) : (
             <tr>
-              <td colSpan="4">No streets found</td>
+              <td colSpan="4">No se encontraron calles</td>
             </tr>
           )}
         </tbody>
