@@ -156,7 +156,7 @@ const StreetForm = () => {
 
   return (
     <div style={styles.container}>
-      <h2>{isEditing ? "Editar Calle" : "Agregar Calle"}</h2>
+      <h2>{"Agregar Calle"}</h2>
       {error && <p style={styles.error}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <div style={styles.formGroup}>
@@ -225,7 +225,7 @@ const StreetForm = () => {
           </label>
         </div>
         <button type="submit" style={styles.button}>
-          {isEditing ? "Actualizar" : "Guardar"}
+          {"Guardar"}
         </button>
         <button
           type="button"

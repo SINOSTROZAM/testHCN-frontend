@@ -1,53 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
-const styles = {
-  container: {
-    padding: "20px",
-    maxWidth: "600px",
-    margin: "0 auto",
-    fontFamily: "Arial, sans-serif",
-  },
-  formGroup: {
-    marginBottom: "15px",
-  },
-  label: {
-    display: "block",
-    marginBottom: "5px",
-    fontWeight: "bold",
-  },
-  select: {
-    width: "100%",
-    padding: "10px",
-    boxSizing: "border-box",
-    border: "1px solid #ccc",
-    borderRadius: "4px",
-  },
-  input: {
-    width: "100%",
-    padding: "10px",
-    boxSizing: "border-box",
-    border: "1px solid #ccc",
-    borderRadius: "4px",
-  },
-  button: {
-    padding: "10px 15px",
-    margin: "5px",
-    border: "none",
-    borderRadius: "4px",
-    cursor: "pointer",
-    backgroundColor: "#007BFF",
-    color: "#fff",
-    fontSize: "16px",
-  },
-  buttonSecondary: {
-    backgroundColor: "#6c757d",
-  },
-  error: {
-    color: "red",
-    marginBottom: "15px",
-  },
-};
+import "../App.css";
 
 const StreetEdit = () => {
   const [regions, setRegions] = useState([]);
@@ -167,15 +120,15 @@ const StreetEdit = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div style={styles.container}>
-      <h2>Editar Calle & Eliminar Calle</h2>
+    <div className="container">
+      <h2>Editar y Eliminar Calle</h2>
       <form onSubmit={handleSubmit}>
-        <div style={styles.formGroup}>
-          <label style={styles.label}>Región:</label>
+        <div className="form-group">
+          <label className="label">Región:</label>
           <select
             value={selectedRegion}
             onChange={(e) => setSelectedRegion(e.target.value)}
-            style={styles.select}
+            className="select"
           >
             <option value="">Selecciona una Región</option>
             {regions.map((region) => (
@@ -185,13 +138,13 @@ const StreetEdit = () => {
             ))}
           </select>
         </div>
-        <div style={styles.formGroup}>
-          <label style={styles.label}>Provincia:</label>
+        <div className="form-group">
+          <label className="label">Provincia:</label>
           <select
             value={selectedProvince}
             onChange={(e) => setSelectedProvince(e.target.value)}
             disabled={!selectedRegion}
-            style={styles.select}
+            className="select"
           >
             <option value="">Selecciona una Provincia</option>
             {provinces.map((province) => (
@@ -201,13 +154,13 @@ const StreetEdit = () => {
             ))}
           </select>
         </div>
-        <div style={styles.formGroup}>
-          <label style={styles.label}>Ciudad:</label>
+        <div className="form-group">
+          <label className="label">Ciudad:</label>
           <select
             value={selectedCity}
             onChange={(e) => setSelectedCity(e.target.value)}
             disabled={!selectedProvince}
-            style={styles.select}
+            className="select"
           >
             <option value="">Selecciona una Ciudad</option>
             {cities.map((city) => (
@@ -217,13 +170,13 @@ const StreetEdit = () => {
             ))}
           </select>
         </div>
-        <div style={styles.formGroup}>
-          <label style={styles.label}>Calle:</label>
+        <div className="form-group">
+          <label className="label">Calle:</label>
           <select
             value={selectedStreet}
             onChange={handleStreetChange}
             disabled={!selectedCity}
-            style={styles.select}
+            className="select"
           >
             <option value="">Selecciona una Calle</option>
             {streets.map((street) => (
@@ -233,23 +186,23 @@ const StreetEdit = () => {
             ))}
           </select>
         </div>
-        <div style={styles.formGroup}>
-          <label style={styles.label}>Nuevo Nombre:</label>
+        <div className="form-group">
+          <label className="label">Nuevo Nombre:</label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             disabled={!selectedStreet}
-            style={styles.input}
+            className="input"
           />
         </div>
-        <button type="submit" style={styles.button} disabled={!selectedStreet}>
+        <button type="submit" className="button" disabled={!selectedStreet}>
           Actualizar
         </button>
         <button
           type="button"
           onClick={handleDelete}
-          style={{ ...styles.button, ...styles.buttonSecondary }}
+          className="button button-secondary"
           disabled={!selectedStreet}
         >
           Eliminar

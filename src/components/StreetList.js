@@ -1,22 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import "../App.css";
 
 const StreetList = () => {
-  // Estado para almacenar la lista completa de calles
   const [allStreets, setAllStreets] = useState([]);
-  // Estado para almacenar las calles filtradas
   const [filteredStreets, setFilteredStreets] = useState([]);
-  // Estado para manejar el estado de carga
   const [loading, setLoading] = useState(true);
-  // Estado para manejar errores
   const [error, setError] = useState(null);
-  // Estados para los filtros
   const [filterName, setFilterName] = useState("");
   const [filterRegion, setFilterRegion] = useState("");
   const [filterProvince, setFilterProvince] = useState("");
   const [filterCity, setFilterCity] = useState("");
 
   useEffect(() => {
-    // Función para recuperar las calles desde la API
     const fetchStreets = async () => {
       try {
         const response = await fetch(`http://localhost:8000/api/streets/`);
@@ -37,8 +32,8 @@ const StreetList = () => {
     fetchStreets();
   }, []);
 
-  // Función para manejar el filtrado
-  const handleFilterChange = () => {
+  // Función para aplicar los filtros
+  const applyFilters = useCallback(() => {
     let filtered = allStreets;
 
     if (filterName) {
@@ -74,64 +69,67 @@ const StreetList = () => {
     }
 
     setFilteredStreets(filtered);
-  };
+  }, [filterName, filterRegion, filterProvince, filterCity, allStreets]);
 
-  // Manejo de estado de carga
+  // Ejecutar la función de filtrado cada vez que cambien los filtros
+  useEffect(() => {
+    applyFilters();
+  }, [applyFilters]);
+
   if (loading) {
     return <p>Loading...</p>;
   }
 
-  // Manejo de errores
   if (error) {
     return <p>Error: {error.message}</p>;
   }
 
   return (
-    <div>
+    <div className="street-list-container">
       <h1>Grilla de Calles</h1>
       <form onSubmit={(e) => e.preventDefault()}>
-        <input
-          type="text"
-          placeholder="Filtro para nombre"
-          value={filterName}
-          onChange={(e) => {
-            setFilterName(e.target.value);
-            handleFilterChange();
-          }}
-        />
-        <input
-          type="text"
-          placeholder="Filtro para region"
-          value={filterRegion}
-          onChange={(e) => {
-            setFilterRegion(e.target.value);
-            handleFilterChange();
-          }}
-        />
-        <input
-          type="text"
-          placeholder="Filtro para provincia"
-          value={filterProvince}
-          onChange={(e) => {
-            setFilterProvince(e.target.value);
-            handleFilterChange();
-          }}
-        />
-        <input
-          type="text"
-          placeholder="Filtro para ciudad"
-          value={filterCity}
-          onChange={(e) => {
-            setFilterCity(e.target.value);
-            handleFilterChange();
-          }}
-        />
+        <div className="form-group">
+          <label>Nombre:</label>
+          <input
+            type="text"
+            placeholder="Filtro para nombre"
+            value={filterName}
+            onChange={(e) => setFilterName(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label>Región:</label>
+          <input
+            type="text"
+            placeholder="Filtro para región"
+            value={filterRegion}
+            onChange={(e) => setFilterRegion(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label>Provincia:</label>
+          <input
+            type="text"
+            placeholder="Filtro para provincia"
+            value={filterProvince}
+            onChange={(e) => setFilterProvince(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label>Ciudad:</label>
+          <input
+            type="text"
+            placeholder="Filtro para ciudad"
+            value={filterCity}
+            onChange={(e) => setFilterCity(e.target.value)}
+          />
+        </div>
       </form>
-      <table>
+      <table className="street-list-table">
         <thead>
           <tr>
             <th>Nombre</th>
-            <th>Region</th>
+            <th>Región</th>
             <th>Provincia</th>
             <th>Ciudad</th>
           </tr>

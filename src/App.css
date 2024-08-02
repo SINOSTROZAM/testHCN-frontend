@@ -1,55 +1,56 @@
 /* src/App.css */
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+/* Contenedor principal */
+.street-list-container {
   padding: 20px;
-}
-
-.container {
   max-width: 800px;
   margin: 0 auto;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
 }
 
-h2 {
+/* Agrupación de formularios */
+.form-group {
   margin-bottom: 15px;
 }
 
-form {
-  margin-bottom: 20px;
+/* Etiquetas de formularios */
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
-input[type="text"],
-select {
+/* Estilo de inputs */
+.form-group input {
   width: 100%;
   padding: 10px;
-  margin-bottom: 10px;
+  box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-button {
-  padding: 15px 20px;
-  margin: 10px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+/* Estilo de tabla */
+.street-list-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
 }
 
-button:hover {
-  background-color: #0056b3;
+.street-list-table th {
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-bottom: 2px solid #ddd;
+}
+
+.street-list-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Estilo de mensajes de error */
+.error-message {
+  color: red;
+  margin-bottom: 15px;
 }
 
 table {
@@ -78,4 +79,96 @@ select:focus {
   outline: none;
   border-color: #007bff;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.container {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.select,
+.input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.button,
+.button-secondary {
+  padding: 10px 15px;
+  margin: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.button {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.button-secondary {
+  background-color: #6c757d;
+}
+
+.error {
+  color: red;
+  margin-bottom: 15px;
+}
+
+.navbar {
+  background: rgba(40, 44, 52, 0.8); /* Fondo con transparencia */
+  color: #fff;
+  padding: 10px 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+  border-radius: 8px; /* Bordes redondeados */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Asegurarse de que esté por encima de otros elementos */
+}
+
+.navbar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar li {
+  margin: 0;
+}
+
+.navbar a {
+  color: #61dafb;
+  text-decoration: none;
+  font-size: 18px; /* Tamaño de fuente más grande */
+  font-weight: 600; /* Peso de fuente más destacado */
+  padding: 5px 10px; /* Padding para botones de navegación */
+  border-radius: 5px; /* Bordes redondeados en los enlaces */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #ffffff;
+  background-color: #21a0f6; /* Fondo de hover */
 }
